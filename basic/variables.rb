@@ -96,7 +96,51 @@ colors.each do |key, value|
     print key, " is ", value, "\n"
 end
 
-# Ranges
+# Ranges inclusive
 (10..15).each do |n| 
     print n, ' ' 
- end
+end
+
+puts "";
+# Ranges exclusive
+(10...15).each do |n| 
+    print n, ' ' 
+end
+
+puts "";
+
+# Defined operator
+foo = 42
+puts "#{defined? foo}"    # => "local-variable"
+puts "#{defined? $_}"     # => "global-variable"
+puts "#{defined? bar}"    # => nil (undefined)
+
+# Ruby Dot "." and Double Colon "::" Operators
+MR_COUNT = 0         # constant defined on main Object class
+module Foo
+   MR_COUNT = 0
+   ::MR_COUNT = 1    # set global count to 1
+   MR_COUNT = 2      # set local count to 2
+end
+puts MR_COUNT        # this is the global constant
+puts Foo::MR_COUNT   # this is the local "Foo" constant
+
+CONST = ' out there'
+class Inside_one
+   CONST = proc {' in there'}
+   def where_is_my_CONST
+      ::CONST + ' inside one'
+   end
+end
+class Inside_two
+   CONST = ' inside two'
+   def where_is_my_CONST
+      CONST
+   end
+end
+puts Inside_one.new.where_is_my_CONST
+puts Inside_two.new.where_is_my_CONST
+puts Object::CONST + Inside_two::CONST
+puts Inside_two::CONST + CONST
+puts Inside_one::CONST
+puts Inside_one::CONST.call + Inside_two::CONST
