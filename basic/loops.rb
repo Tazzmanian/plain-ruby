@@ -76,7 +76,7 @@ for i in 0..5
         puts "Value of local variable is #{i}"
     rescue 
         puts "Retry: #{i}"
-        retry; # inifnite loop on the current scope
+        # retry; # inifnite loop on the current scope
     end
 end
 
