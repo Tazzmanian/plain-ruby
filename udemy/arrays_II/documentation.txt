@@ -1,0 +1,5 @@
+Run `gem rdoc --all --ri --no-rdoc` to install documentations
+
+In terminal to test:
+`ri Array`
+`ri String.upcase`
